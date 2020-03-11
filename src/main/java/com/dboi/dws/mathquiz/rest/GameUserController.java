@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-public class SampleController {
+public class GameUserController {
 
     @Autowired
     GameUserService gameUserService;
@@ -23,25 +23,20 @@ public class SampleController {
     {
         return "Just Check ";
     }
-//
-//    @PostMapping("/create")
-//    public GameUser createGameuser(@Valid @RequestBody GameUser gameUser)
-//    {
-//        return gameUserDao.save(gameUser);
-//    }
 
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/createnew")
     public GameUser createnewGameUSer(@Valid @RequestBody GameUser gameUser)
     {
         return gameUserService.savedata(gameUser);
     }
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/alldetails")
+    public List<GameUser>getallData()
+    {
+        return gameUserService.allGameUsers();
+    }
 
-
-//    @GetMapping("/alldetails")
-//    public List<GameUser> getalldata()
-//    {
-//        return gameUserDao.findall();
-//    }
 
 }
